@@ -21,5 +21,4 @@ rsa_assign2: rsa_assign2.c
 
 # ---- Clean build outputs ----
 clean:
-	rm -f $(TARGETS) *.o *.out *.key *.bin *.sig
-	rm -f $(filter-out input.txt, $(wildcard *.txt))
+	rm -f $(TARGETS) *.o *.out *.key *.txt *.bin *.sig
