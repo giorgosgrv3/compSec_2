@@ -300,10 +300,10 @@ static void verify(const char *in, const char *sig, const char *pubkey) {
     crypto_hash_sha256(digest, buf, (unsigned long long)len);
     free(buf);
 
-    // convert digest (byte array, big-endian) → GMP integer H
+    //convert digest (byte array, big-endian) → GMP integer H
     mpz_import(H, sizeof(digest), 1, 1, 1, 0, digest);
 
-    // read signature file (hex text) and parse into big integer S
+    //read signature file (hex text) and parse into big integer S
     unsigned char *raw = NULL; size_t rlen = 0;
     read_all(sig, &raw, &rlen);
     char *hexsig = (char*)malloc(rlen + 1);
@@ -326,7 +326,7 @@ static void verify(const char *in, const char *sig, const char *pubkey) {
     // recover the signed hash: H2 = S^e mod n
     mpz_powm(H2, S, e, n);
 
-    // compare
+    // compare, is H=H2 ??
     if (mpz_cmp(H, H2) == 0) printf("Signature is VALID\n");
     else                     printf("Signature is INVALID\n");
 

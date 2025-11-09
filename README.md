@@ -1,6 +1,7 @@
+##### Gravalos Georgios Angelos, 2021030001  
+##### Kerimi Rafaela Aikaterina, 2021030007
 # Assignment 2 - ECDH & RSA  
-Gravalos Georgios Angelos, 2021030001  
-Kerimi Rafaela Aikaterini, 2021030007
+
 
 (We have optimized this README for Markdown)
 
@@ -58,6 +59,12 @@ the files `private_<bits>.key` and `public_<bits>.key` are the private (n,d) and
 They consist of TWO lines. The first line is always n, the second line is always either e or d depending on whether it's the public or private key.  
 Two helper functions inside the code are responsible for doing the key reading-to / writing-from the files.  
 The plaintext must satisfy the constraint M < n . Encrypting plaintext or decrypting ciphertext which is >n is not supported, since it has not been requested in the assignment.
+As to the signing and verification, we have used libsodium's implementation of SHA-256.
+To sign, we compute hash of the plaintext and sign with the private key.
+h = SHA256(M) and then S = h^d mod n, then write signature S to the file.
+To verify, we compute hash of the plaintext, verify using public key.
+h = SHA256(M) and then h' = S^e mod n.
+If h'=h, the console will print "signature is VALID", otherwise "signature is INVALID".
 
 **Examples of usage:**
 ```bash
